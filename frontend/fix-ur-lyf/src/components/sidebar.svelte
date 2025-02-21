@@ -1,6 +1,6 @@
 <script>
     let selected = "All Tasks";
-  </script>
+</script>
   
   <div class="w-64 h-screen bg-gray-900 text-white flex flex-col p-4">
     <!-- App Title -->
