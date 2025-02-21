@@ -1,5 +1,7 @@
-<script>
+<script lang="ts">
     let isOpen = false;
+    export let togglesidebar: () => void
+    // import sidebar from "./sidebar.svelte"
   </script>
   
   <nav class="bg-gray-900 text-white shadow-md">
@@ -7,7 +9,7 @@
       <div class="flex justify-between h-16 items-center">
         <!-- Left: Logo -->
         <div class="flex items-center">
-          <span class="text-xl font-bold">✅ fix-ur-lyf</span>
+          <span class="text-xl font-bold cursor-pointer" on:click={(togglesidebar)}>✅ fix-ur-lyf</span>
         </div>
   
         <!-- Center: Navigation Links (Hidden in Mobile) -->
