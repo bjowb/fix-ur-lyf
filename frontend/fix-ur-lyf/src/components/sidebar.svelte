@@ -1,42 +1,25 @@
-<script>
-    let selected = "All Tasks";
+<script lang="ts">
+  export let isOpen: boolean;
+  export let closeSidebar: () => void;
 </script>
+
+<!-- Overlay (for clicking outside) -->
+{#if isOpen}
+  <div class="fixed inset-0 bg-black bg-opacity-50 z-40" on:click={closeSidebar}></div>
+{/if}
+
+<!-- Sidebar -->
+<div class={`fixed top-0 left-0 w-64 bg-gray-800 text-white h-full shadow-md transform 
+  ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out z-50`}>
   
-  <div class="w-64 h-screen bg-gray-900 text-white flex flex-col p-4">
-    <!-- App Title -->
-    <h1 class="text-xl font-bold flex items-center">
-      ✅ Tasks
-    </h1>
-  
-    <!-- Create Button -->
-    <button class="mt-4 w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">
-      + Create
-    </button>
-  
-    <!-- Task Categories -->
-    <div class="mt-6">
-      <button class={`w-full text-left py-2 px-2 rounded-lg flex items-center ${
-        selected === "All Tasks" ? "bg-blue-600" : "hover:bg-gray-700"
-      }`} on:click={() => selected = "All Tasks"}>
-        All Tasks
-      </button>
-      
-      <button class={`w-full text-left py-2 px-2 rounded-lg flex items-center ${
-        selected === "Starred" ? "bg-blue-600" : "hover:bg-gray-700"
-      }`} on:click={() => selected = "Starred"}>
-        ⭐ Starred
-      </button>
-    </div>
-  
-    <!-- Task Lists -->
-    <div class="mt-4">
-      <h2 class="text-sm text-gray-400">Lists</h2>
-      <button class="w-full text-left py-2 px-2 rounded-lg hover:bg-gray-700 flex items-center">
-        📌 My Tasks
-      </button>
-      <button class="w-full text-left py-2 px-2 rounded-lg hover:bg-gray-700 flex items-center text-blue-400">
-        + Create new list
-      </button>
-    </div>
+  <div class="p-5 flex justify-between items-center border-b border-gray-700">
+    <span class="text-lg font-semibold">Menu</span>
+    <button class="text-gray-300 hover:text-white" on:click={closeSidebar}>✖</button>
   </div>
-  
+
+  <ul class="mt-4 space-y-2 p-4">
+    <li><a href="/" class="block py-2 px-4 hover:bg-gray-700 rounded">Home</a></li>
+    <li><a href="/tasks" class="block py-2 px-4 hover:bg-gray-700 rounded">Tasks</a></li>
+    <li><a href="/about" class="block py-2 px-4 hover:bg-gray-700 rounded">About</a></li>
+  </ul>
+</div>

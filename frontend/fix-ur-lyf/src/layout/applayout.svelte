@@ -1,19 +1,19 @@
-<script>
-    import Sidebar from "../components/sidebar.svelte";
-    import TaskView from "../components/taskview.svelte";
-    import NavBar from "../components/navbar.svelte";
+<script lang="ts">
+  import Navbar from "../components/navbar.svelte";
+  import Sidebar from "../components/sidebar.svelte";
+  
+  let isOpen = false; // Make sure the variable matches Sidebar.svelte prop name
+  const toggleSidebar = () => (isOpen = !isOpen);
+  const closeSidebar = () => (isOpen = false);
+</script>
 
-    let bool1 = false
-    const togglesidebar = () =>{
-      bool1 = !bool1
-    };
-  </script>
+<div class="flex h-screen">
+  <Sidebar {isOpen} {closeSidebar} />
   
-  <div class="flex h-screen">
-    <NavBar {togglesidebar} />
-    {#if bool1}
-      <Sidebar />
-    {/if}
-    <TaskView />
+  <div class="flex-1">
+    <Navbar {toggleSidebar} />
+    <main class="mt-16 p-4"> <!-- Ensures content starts below navbar -->
+      <slot />
+    </main>
   </div>
-  
+</div>
